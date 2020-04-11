@@ -1,0 +1,25 @@
+import discord
+
+TOKEN = 'Njk4MjQ1NTgzMDU1NDg2OTg2.XpDLeg.ChHdVp8Pz28YLQS4DpAWtfYiF84'
+
+client = discord.Client()
+
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+
+    if message.content.startswith('!hello'):
+        msg = 'Hello {0.author.mention}'.format(message)
+        await client.send_message(message.channel, msg)
+    elif message.content.startswith('!bot'):
+        await client.send_message(message.channel, "I am a Project for 4006CEM")
+
+@client.event
+async def on_ready():
+    print('Logged in as')
+    print(client.user.name)
+    print(client.user.id)
+    print('------')
+
+client.run(TOKEN)
